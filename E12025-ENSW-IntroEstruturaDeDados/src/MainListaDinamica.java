@@ -31,5 +31,10 @@ public class MainListaDinamica {
         int total = listaDinamica.adicionarVarios(novosElementos);
 
         System.out.println("Total de elementos adicionados: " + total);
+
+        System.out.println("Total de elementos na lista dinâmica: " + listaDinamica.contar());
+
+        listaDinamica.exibir();
+
     }
 }
