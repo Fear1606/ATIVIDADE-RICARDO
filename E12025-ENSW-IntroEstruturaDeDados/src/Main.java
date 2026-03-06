@@ -25,5 +25,8 @@ public class Main {
         int totalAdicionados = listaSimples.adicionarVarios(novos);
 
         System.out.println("Total adicionados: " + totalAdicionados);
+
+        //QUESTÃO 4
+        System.out.println("Elemento na posição 2: " + listaSimples.obter(2));
     }
 }

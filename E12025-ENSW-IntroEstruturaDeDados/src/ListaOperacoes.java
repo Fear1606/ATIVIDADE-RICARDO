@@ -6,5 +6,7 @@ public interface ListaOperacoes {
 
     int adicionarVarios(String[] elementos);
 
+    String obter(int indice);
 
+    boolean inserir(int indice, String elemento);
 }

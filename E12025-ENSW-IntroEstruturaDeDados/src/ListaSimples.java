@@ -161,4 +161,45 @@ public class ListaSimples implements ListaOperacoes {
         // retornamos quantos foram realmente adicionados
         return adicionados;
     }
+    /**
+     * Retorna o elemento que está na posição informada do vetor.
+     */
+    @Override
+    public String obter(int indice) {
+
+        // verificamos se o índice é inválido
+        if(indice < 0 || indice >= this.lista.length) {
+            System.out.println("Índice inválido.");
+            return null;
+        }
+
+        // retornamos o elemento que está naquela posição
+        return this.lista[indice];
+    }
+    @Override
+    public boolean inserir(int indice, String elemento) {
+
+        // verifica se índice é inválido
+        if(indice < 0 || indice >= lista.length) {
+            System.out.println("Índice inválido.");
+            return false;
+        }
+
+        // verifica se a lista está cheia
+        if(estaCheia()) {
+            return false;
+        }
+
+        // desloca os elementos para a direita
+        for(int i = lista.length - 1; i > indice; i--) {
+            lista[i] = lista[i - 1];
+        }
+
+        // insere o novo elemento na posição desejada
+        lista[indice] = elemento;
+
+        System.out.println("Elemento " + elemento + " inserido na posição " + indice);
+
+        return true;
+    }
 }

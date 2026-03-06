@@ -36,5 +36,13 @@ public class MainListaDinamica {
 
         listaDinamica.exibir();
 
+        //QUESTÃO 4
+        System.out.println("Elemento na posição 0: " + listaDinamica.obter(0));
+
+        //QUESTÃO 5
+
+        listaDinamica.inserir(1, "Bife");
+
+        listaDinamica.exibir();
     }
 }

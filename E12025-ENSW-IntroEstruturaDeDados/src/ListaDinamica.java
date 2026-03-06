@@ -216,5 +216,85 @@ public class ListaDinamica implements ListaOperacoes {
         // retornamos quantos elementos foram adicionados
         return adicionados;
     }
+    @Override
+    public String obter(int indice) {
+
+        // se o índice for negativo já é inválido
+        if(indice < 0) {
+            System.out.println("Índice inválido.");
+            return null;
+        }
+
+        // começamos pelo início da lista
+        No aux = this.inicio;
+
+        // variável para controlar a posição atual
+        int contador = 0;
+
+        // percorremos a lista enquanto existir nó
+        while(aux != null) {
+
+            // se chegarmos no índice desejado
+            if(contador == indice) {
+                return aux.getConteudo();
+            }
+
+            // avançamos para o próximo nó
+            aux = aux.getProx();
+
+            // aumentamos o contador de posição
+            contador++;
+        }
+
+        // se terminar o while e não encontrar o índice
+        System.out.println("Índice fora do tamanho da lista.");
+        return null;
+    }
+    @Override
+    public boolean inserir(int indice, String elemento) {
+
+        // índice inválido
+        if(indice < 0) {
+            System.out.println("Índice inválido.");
+            return false;
+        }
+
+        No novoNo = new No(elemento);
+
+        // inserir no início da lista
+        if(indice == 0) {
+
+            novoNo.setProx(inicio);
+            inicio = novoNo;
+
+            System.out.println("Elemento " + elemento + " inserido no início da lista.");
+
+            return true;
+        }
+
+        No aux = inicio;
+        int contador = 0;
+
+        // percorremos a lista até a posição anterior ao índice
+        while(aux != null && contador < indice - 1) {
+
+            aux = aux.getProx();
+            contador++;
+        }
+
+        // se não encontrou posição válida
+        if(aux == null) {
+            System.out.println("Índice fora do tamanho da lista.");
+            return false;
+        }
+
+        // ajustamos os ponteiros dos nós
+        novoNo.setProx(aux.getProx());
+        aux.setProx(novoNo);
+
+        System.out.println("Elemento " + elemento + " inserido na posição " + indice);
+
+        return true;
+    }
 }
 
