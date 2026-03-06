@@ -1,0 +1,55 @@
+<html>
+<head>
+<title>MainListaDinamica.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #ed864a;}
+.s1 { color: #ebebeb;}
+.s2 { color: #ed864a; font-weight: bold;}
+.s3 { color: #7ec3e6;}
+.s4 { color: #54b33e;}
+</style>
+</head>
+<body bgcolor="#131314">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+MainListaDinamica.java</font>
+</center></td></tr></table>
+<pre><span class="s0">public class </span><span class="s1">MainListaDinamica {</span>
+
+    <span class="s0">public static void </span><span class="s1">main(String[] args) {</span>
+
+        <span class="s1">ListaDinamica listaDinamica = </span><span class="s0">new </span><span class="s1">ListaDinamica()</span><span class="s2">;</span>
+
+        <span class="s3">// Adicionando elementos</span>
+        <span class="s1">listaDinamica.adicionarElemento(</span><span class="s4">&quot;Arroz&quot;</span><span class="s1">)</span><span class="s2">;</span>
+        <span class="s1">listaDinamica.adicionarElemento(</span><span class="s4">&quot;Feijão&quot;</span><span class="s1">)</span><span class="s2">;</span>
+        <span class="s1">listaDinamica.adicionarElemento(</span><span class="s4">&quot;Arroz&quot;</span><span class="s1">)</span><span class="s2">;</span>
+        <span class="s1">listaDinamica.adicionarElemento(</span><span class="s4">&quot;Batata&quot;</span><span class="s1">)</span><span class="s2">;</span>
+        <span class="s1">listaDinamica.adicionarElemento(</span><span class="s4">&quot;Arroz&quot;</span><span class="s1">)</span><span class="s2">;</span>
+        <span class="s1">listaDinamica.adicionarElemento(</span><span class="s4">&quot;Arroz&quot;</span><span class="s1">)</span><span class="s2">;</span>
+        <span class="s1">listaDinamica.adicionarElemento(</span><span class="s4">&quot;Arroz&quot;</span><span class="s1">)</span><span class="s2">;</span>
+
+        <span class="s1">System.out.println(</span><span class="s4">&quot;</span><span class="s0">\n</span><span class="s4">Lista antes da remoção:&quot;</span><span class="s1">)</span><span class="s2">;</span>
+        <span class="s1">listaDinamica.exibir()</span><span class="s2">;</span>
+
+        <span class="s3">// Chamando o novo método da interface</span>
+        <span class="s0">int </span><span class="s1">totalRemovidos = listaDinamica.removerTodas(</span><span class="s4">&quot;Arroz&quot;</span><span class="s1">)</span><span class="s2">;</span>
+
+        <span class="s1">System.out.println(</span><span class="s4">&quot;</span><span class="s0">\n</span><span class="s4">Total removido: &quot; </span><span class="s1">+ totalRemovidos)</span><span class="s2">;</span>
+
+        <span class="s1">System.out.println(</span><span class="s4">&quot;</span><span class="s0">\n</span><span class="s4">Lista depois da remoção:&quot;</span><span class="s1">)</span><span class="s2">;</span>
+        <span class="s1">listaDinamica.exibir()</span><span class="s2">;</span>
+
+        <span class="s1">System.out.println(</span><span class="s4">&quot;Total de elementos na lista dinâmica: &quot; </span><span class="s1">+ listaDinamica.contar())</span><span class="s2">;</span>
+
+        <span class="s1">String[] novosElementos = {</span><span class="s4">&quot;Macarrão&quot;</span><span class="s2">, </span><span class="s4">&quot;Leite&quot;</span><span class="s2">, </span><span class="s4">&quot;Café&quot;</span><span class="s1">}</span><span class="s2">;</span>
+
+        <span class="s0">int </span><span class="s1">total = listaDinamica.adicionarVarios(novosElementos)</span><span class="s2">;</span>
+
+        <span class="s1">System.out.println(</span><span class="s4">&quot;Total de elementos adicionados: &quot; </span><span class="s1">+ total)</span><span class="s2">;</span>
+    <span class="s1">}</span>
+<span class="s1">}</span></pre>
+</body>
+</html>

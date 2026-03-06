@@ -1,0 +1,243 @@
+<html>
+<head>
+<title>ListaDinamica.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #ed864a;}
+.s1 { color: #ebebeb;}
+.s2 { color: #ed864a; font-weight: bold;}
+.s3 { color: #54b33e;}
+.s4 { color: #7ec3e6;}
+.s5 { color: #33ccff; font-weight: bold;}
+.s6 { color: #499936; font-style: italic;}
+</style>
+</head>
+<body bgcolor="#131314">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+ListaDinamica.java</font>
+</center></td></tr></table>
+<pre><span class="s0">public class </span><span class="s1">ListaDinamica </span><span class="s0">implements </span><span class="s1">ListaOperacoes {</span>
+    <span class="s1">No inicio</span><span class="s2">;</span>
+
+    <span class="s0">public </span><span class="s1">ListaDinamica() {</span>
+        <span class="s0">this</span><span class="s1">.inicio = </span><span class="s0">new </span><span class="s1">No(</span><span class="s0">null</span><span class="s1">)</span><span class="s2">;</span>
+        <span class="s1">System.out.println(</span><span class="s3">&quot;Lista dinâmica criada com sucesso!&quot;</span><span class="s1">)</span><span class="s2">;</span>
+    <span class="s1">}</span>
+
+    <span class="s0">public void </span><span class="s1">adicionarElemento(String elemento) {</span>
+
+        <span class="s0">if</span><span class="s1">(inicioEstaVazio()) {</span>
+            <span class="s0">this</span><span class="s1">.inicio.setConteudo(elemento)</span><span class="s2">;</span>
+        <span class="s1">} </span><span class="s0">else </span><span class="s1">{</span>
+            <span class="s1">No aux = </span><span class="s0">this</span><span class="s1">.inicio</span><span class="s2">;</span>
+            <span class="s1">No novoNo = </span><span class="s0">new </span><span class="s1">No(elemento)</span><span class="s2">;</span>
+            <span class="s0">while</span><span class="s1">(aux.getProx() != </span><span class="s0">null</span><span class="s1">) {</span>
+                <span class="s1">aux = aux.getProx()</span><span class="s2">;</span>
+            <span class="s1">}</span>
+            <span class="s1">aux.setProx(novoNo)</span><span class="s2">;</span>
+        <span class="s1">}</span>
+    <span class="s1">}</span>
+
+    <span class="s0">public void </span><span class="s1">exibir() {</span>
+        <span class="s0">if</span><span class="s1">(inicioEstaVazio()) {</span>
+            <span class="s1">System.out.println(</span><span class="s3">&quot;Não existem elementos na lista dinâmica.&quot;</span><span class="s1">)</span><span class="s2">;</span>
+        <span class="s1">} </span><span class="s0">else </span><span class="s1">{</span>
+            <span class="s1">No aux = </span><span class="s0">this</span><span class="s1">.inicio</span><span class="s2">;</span>
+<span class="s4">//            while(aux != null &amp;&amp; aux.getConteudo() != null) {</span>
+<span class="s4">//                System.out.println(aux.getConteudo());</span>
+<span class="s4">//                aux = aux.getProx();</span>
+<span class="s4">//            }</span>
+
+            <span class="s0">while</span><span class="s1">(aux != </span><span class="s0">null</span><span class="s1">) {</span>
+                <span class="s1">System.out.println(aux.getConteudo())</span><span class="s2">;</span>
+                <span class="s1">aux = aux.getProx()</span><span class="s2">;</span>
+            <span class="s1">}</span>
+            <span class="s4">//System.out.println(aux.getConteudo());</span>
+        <span class="s1">}</span>
+    <span class="s1">}</span>
+
+    <span class="s0">private boolean </span><span class="s1">inicioEstaVazio() {</span>
+        <span class="s0">if</span><span class="s1">(</span><span class="s0">this</span><span class="s1">.inicio.getConteudo() == </span><span class="s0">null</span><span class="s1">) {</span>
+            <span class="s0">return true</span><span class="s2">;</span>
+        <span class="s1">} </span><span class="s0">else </span><span class="s1">{</span>
+            <span class="s0">return false</span><span class="s2">;</span>
+        <span class="s1">}</span>
+    <span class="s1">}</span>
+
+    <span class="s0">public int </span><span class="s1">removerElemento(String elemento) {</span>
+        <span class="s0">if</span><span class="s1">(inicioEstaVazio()) {</span>
+            <span class="s1">System.out.println(</span><span class="s3">&quot;Não há elementos a serem removidos.&quot;</span><span class="s1">)</span><span class="s2">;</span>
+        <span class="s1">} </span><span class="s0">else </span><span class="s1">{</span>
+            <span class="s0">if</span><span class="s1">(procurarElemento(elemento)) {</span>
+                <span class="s4">//remover primeiro elemento isolado</span>
+                <span class="s0">if</span><span class="s1">(</span><span class="s0">this</span><span class="s1">.inicio.getProx() == </span><span class="s0">null</span><span class="s1">) {</span>
+                    <span class="s1">System.out.println(</span><span class="s3">&quot;Elemento &quot; </span><span class="s1">+ elemento + </span><span class="s3">&quot; removido!&quot;</span><span class="s1">)</span><span class="s2">;</span>
+                    <span class="s0">this</span><span class="s1">.inicio.setConteudo(</span><span class="s0">null</span><span class="s1">)</span><span class="s2">;</span>
+                <span class="s1">}</span>
+                <span class="s4">//remover qualquer nó conectado</span>
+                <span class="s0">else if</span><span class="s1">(</span><span class="s0">this</span><span class="s1">.inicio.getProx() != </span><span class="s0">null</span><span class="s1">) {</span>
+                    <span class="s1">No aux = </span><span class="s0">this</span><span class="s1">.inicio</span><span class="s2">;</span>
+                    <span class="s0">while</span><span class="s1">(aux != </span><span class="s0">null</span><span class="s1">) {</span>
+                        <span class="s0">if </span><span class="s1">(</span><span class="s0">this</span><span class="s1">.inicio.getConteudo().equals(elemento)) {</span>
+                            <span class="s1">System.out.println(</span><span class="s3">&quot;Elemento &quot; </span><span class="s1">+ elemento + </span><span class="s3">&quot; removido!&quot;</span><span class="s1">)</span><span class="s2">;</span>
+                            <span class="s0">this</span><span class="s1">.inicio = </span><span class="s0">this</span><span class="s1">.inicio.getProx()</span><span class="s2">;</span>
+                            <span class="s0">return </span><span class="s5">0</span><span class="s2">;</span>
+                        <span class="s1">} </span><span class="s0">else if</span><span class="s1">(aux.getProx().getConteudo().equals(elemento)) {</span>
+                            <span class="s1">System.out.println(</span><span class="s3">&quot;Elemento &quot; </span><span class="s1">+ elemento + </span><span class="s3">&quot; removido!&quot;</span><span class="s1">)</span><span class="s2">;</span>
+                            <span class="s1">aux.setProx(aux.getProx().getProx())</span><span class="s2">;</span>
+                            <span class="s0">return </span><span class="s5">0</span><span class="s2">;</span>
+                        <span class="s1">}</span>
+                        <span class="s1">aux = aux.getProx()</span><span class="s2">;</span>
+                    <span class="s1">}</span>
+                <span class="s1">}</span>
+            <span class="s1">}</span>
+            <span class="s0">int </span><span class="s1">contar</span><span class="s2">; </span><span class="s1">{</span>
+
+                <span class="s4">// contador de elementos</span>
+                <span class="s0">int </span><span class="s1">total = </span><span class="s5">0</span><span class="s2">;</span>
+
+                <span class="s4">// variável auxiliar começa no início da lista</span>
+                <span class="s1">No aux = </span><span class="s0">this</span><span class="s1">.inicio</span><span class="s2">;</span>
+
+                <span class="s4">// percorremos a lista enquanto existir nó</span>
+                <span class="s0">while</span><span class="s1">(aux != </span><span class="s0">null</span><span class="s1">) {</span>
+
+                    <span class="s4">// verificamos se o conteúdo do nó não é null</span>
+                    <span class="s0">if</span><span class="s1">(aux.getConteudo() != </span><span class="s0">null</span><span class="s1">) {</span>
+
+                        <span class="s4">// se existir conteúdo, contamos</span>
+                        <span class="s1">total++</span><span class="s2">;</span>
+                    <span class="s1">}</span>
+
+                    <span class="s4">// passamos para o próximo nó da lista</span>
+                    <span class="s1">aux = aux.getProx()</span><span class="s2">;</span>
+                <span class="s1">}</span>
+
+                <span class="s4">// retornamos o total de elementos encontrados</span>
+                <span class="s0">return </span><span class="s1">total</span><span class="s2">;</span>
+            <span class="s1">}</span>
+        <span class="s1">}</span>
+        <span class="s0">return </span><span class="s5">0</span><span class="s2">;</span>
+    <span class="s1">}</span>
+
+    <span class="s0">public boolean </span><span class="s1">procurarElemento(String elemento) {</span>
+        <span class="s0">if</span><span class="s1">(inicioEstaVazio()) {</span>
+            <span class="s1">System.out.println(</span><span class="s3">&quot;Não há elementos a serem procurados.&quot;</span><span class="s1">)</span><span class="s2">;</span>
+        <span class="s1">} </span><span class="s0">else </span><span class="s1">{</span>
+            <span class="s1">No aux = </span><span class="s0">this</span><span class="s1">.inicio</span><span class="s2">;</span>
+            <span class="s0">while</span><span class="s1">(aux != </span><span class="s0">null</span><span class="s1">) {</span>
+                <span class="s0">if</span><span class="s1">(aux.getConteudo().equals(elemento)) {</span>
+                    <span class="s1">System.out.println(</span><span class="s3">&quot;Elemento &quot; </span><span class="s1">+ elemento + </span><span class="s3">&quot; encontrado!&quot;</span><span class="s1">)</span><span class="s2">;</span>
+                    <span class="s0">return true</span><span class="s2">;</span>
+                <span class="s1">}</span>
+                <span class="s1">aux = aux.getProx()</span><span class="s2">;</span>
+            <span class="s1">}</span>
+            <span class="s1">System.out.println(</span><span class="s3">&quot;Elemento &quot; </span><span class="s1">+ elemento + </span><span class="s3">&quot; não existe na lista.&quot;</span><span class="s1">)</span><span class="s2">;</span>
+        <span class="s1">}</span>
+        <span class="s0">return false</span><span class="s2">;</span>
+    <span class="s1">}</span>
+    <span class="s6">/**</span>
+     <span class="s6">* Remove todas as ocorrências do elemento na lista dinâmica.</span>
+     <span class="s6">* Percorre todos os nós ajustando os ponteiros.</span>
+     <span class="s6">* Retorna a quantidade total removida.</span>
+     <span class="s6">*/</span>
+    <span class="s1">@Override</span>
+    <span class="s0">public int </span><span class="s1">removerTodas(String elemento) {</span>
+
+        <span class="s0">int </span><span class="s1">totalRemovidos = </span><span class="s5">0</span><span class="s2">; </span><span class="s4">// contador de remoções</span>
+
+        <span class="s4">// Se a lista estiver vazia</span>
+        <span class="s0">if </span><span class="s1">(inicioEstaVazio()) {</span>
+            <span class="s1">System.out.println(</span><span class="s3">&quot;Lista está vazia.&quot;</span><span class="s1">)</span><span class="s2">;</span>
+            <span class="s0">return </span><span class="s5">0</span><span class="s2">;</span>
+        <span class="s1">}</span>
+
+        <span class="s4">// Remove ocorrências no início da lista</span>
+        <span class="s0">while </span><span class="s1">(inicio != </span><span class="s0">null </span><span class="s1">&amp;&amp;</span>
+                <span class="s1">inicio.getConteudo() != </span><span class="s0">null </span><span class="s1">&amp;&amp;</span>
+                <span class="s1">inicio.getConteudo().equals(elemento)) {</span>
+
+            <span class="s4">// Move o início para o próximo nó</span>
+            <span class="s1">inicio = inicio.getProx()</span><span class="s2">;</span>
+            <span class="s1">totalRemovidos++</span><span class="s2">;</span>
+        <span class="s1">}</span>
+
+        <span class="s4">// Nó auxiliar para percorrer a lista</span>
+        <span class="s1">No aux = inicio</span><span class="s2">;</span>
+
+        <span class="s4">// Percorre enquanto existir próximo nó</span>
+        <span class="s0">while </span><span class="s1">(aux != </span><span class="s0">null </span><span class="s1">&amp;&amp; aux.getProx() != </span><span class="s0">null</span><span class="s1">) {</span>
+
+            <span class="s4">// Se o próximo nó contém o elemento</span>
+            <span class="s0">if </span><span class="s1">(aux.getProx().getConteudo().equals(elemento)) {</span>
+
+                <span class="s4">// &quot;Pula&quot; o nó removendo ele da ligação</span>
+                <span class="s1">aux.setProx(aux.getProx().getProx())</span><span class="s2">;</span>
+                <span class="s1">totalRemovidos++</span><span class="s2">;</span>
+
+            <span class="s1">} </span><span class="s0">else </span><span class="s1">{</span>
+                <span class="s4">// Avança para o próximo nó</span>
+                <span class="s1">aux = aux.getProx()</span><span class="s2">;</span>
+            <span class="s1">}</span>
+        <span class="s1">}</span>
+
+        <span class="s0">return </span><span class="s1">totalRemovidos</span><span class="s2">; </span><span class="s4">// retorna total removido</span>
+    <span class="s1">}</span>
+    <span class="s6">/**</span>
+     <span class="s6">* Conta quantos elementos existem na lista dinâmica.</span>
+     <span class="s6">* Para isso percorremos todos os nós da lista.</span>
+     <span class="s6">*/</span>
+    <span class="s1">@Override</span>
+    <span class="s0">public int </span><span class="s1">contar() {</span>
+
+        <span class="s4">// contador de elementos</span>
+        <span class="s0">int </span><span class="s1">total = </span><span class="s5">0</span><span class="s2">;</span>
+
+        <span class="s4">// variável auxiliar começa no início da lista</span>
+        <span class="s1">No aux = </span><span class="s0">this</span><span class="s1">.inicio</span><span class="s2">;</span>
+
+        <span class="s4">// percorremos a lista enquanto existir nó</span>
+        <span class="s0">while</span><span class="s1">(aux != </span><span class="s0">null</span><span class="s1">) {</span>
+
+            <span class="s4">// verificamos se o conteúdo do nó não é null</span>
+            <span class="s0">if</span><span class="s1">(aux.getConteudo() != </span><span class="s0">null</span><span class="s1">) {</span>
+
+                <span class="s4">// se existir conteúdo, contamos</span>
+                <span class="s1">total++</span><span class="s2">;</span>
+            <span class="s1">}</span>
+
+            <span class="s4">// passamos para o próximo nó da lista</span>
+            <span class="s1">aux = aux.getProx()</span><span class="s2">;</span>
+        <span class="s1">}</span>
+
+        <span class="s4">// retornamos o total de elementos encontrados</span>
+        <span class="s0">return </span><span class="s1">total</span><span class="s2">;</span>
+     <span class="s1">}</span>
+    <span class="s1">@Override</span>
+    <span class="s0">public int </span><span class="s1">adicionarVarios(String[] elementos) {</span>
+
+        <span class="s4">// contador de elementos adicionados</span>
+        <span class="s0">int </span><span class="s1">adicionados = </span><span class="s5">0</span><span class="s2">;</span>
+
+        <span class="s4">// percorremos o vetor recebido</span>
+        <span class="s0">for</span><span class="s1">(</span><span class="s0">int </span><span class="s1">i = </span><span class="s5">0</span><span class="s2">; </span><span class="s1">i &lt; elementos.length</span><span class="s2">; </span><span class="s1">i++) {</span>
+
+            <span class="s4">// utilizamos o método já existente para adicionar</span>
+            <span class="s1">adicionarElemento(elementos[i])</span><span class="s2">;</span>
+
+            <span class="s1">System.out.println(</span><span class="s3">&quot;Elemento &quot; </span><span class="s1">+ elementos[i] + </span><span class="s3">&quot; adicionado.&quot;</span><span class="s1">)</span><span class="s2">;</span>
+
+            <span class="s4">// aumentamos o contador</span>
+            <span class="s1">adicionados++</span><span class="s2">;</span>
+        <span class="s1">}</span>
+
+        <span class="s4">// retornamos quantos elementos foram adicionados</span>
+        <span class="s0">return </span><span class="s1">adicionados</span><span class="s2">;</span>
+    <span class="s1">}</span>
+<span class="s1">}</span>
+
+</pre>
+</body>
+</html>

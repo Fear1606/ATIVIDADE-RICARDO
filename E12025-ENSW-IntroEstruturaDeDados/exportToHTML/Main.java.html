@@ -1,0 +1,51 @@
+<html>
+<head>
+<title>Main.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #ed864a;}
+.s1 { color: #ebebeb;}
+.s2 { color: #33ccff; font-weight: bold;}
+.s3 { color: #ed864a; font-weight: bold;}
+.s4 { color: #54b33e;}
+.s5 { color: #7ec3e6;}
+</style>
+</head>
+<body bgcolor="#131314">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Main.java</font>
+</center></td></tr></table>
+<pre><span class="s0">public class </span><span class="s1">Main {</span>
+    <span class="s0">public static void </span><span class="s1">main(String[] args) {</span>
+        <span class="s1">ListaSimples listaSimples = </span><span class="s0">new </span><span class="s1">ListaSimples(</span><span class="s2">5</span><span class="s1">)</span><span class="s3">;</span>
+
+        <span class="s1">listaSimples.adicionarElemento(</span><span class="s4">&quot;Arroz&quot;</span><span class="s1">)</span><span class="s3">;</span>
+        <span class="s1">listaSimples.adicionarElemento(</span><span class="s4">&quot;Feijão&quot;</span><span class="s1">)</span><span class="s3">;</span>
+        <span class="s1">listaSimples.adicionarElemento(</span><span class="s4">&quot;Sabão em Pó&quot;</span><span class="s1">)</span><span class="s3">;</span>
+        <span class="s1">listaSimples.adicionarElemento(</span><span class="s4">&quot;Papel Higiênico&quot;</span><span class="s1">)</span><span class="s3">;</span>
+        <span class="s1">listaSimples.adicionarElemento(</span><span class="s4">&quot;Óleo&quot;</span><span class="s1">)</span><span class="s3">;</span>
+        <span class="s1">listaSimples.buscarElemento(</span><span class="s4">&quot;Óleo&quot;</span><span class="s1">)</span><span class="s3">;</span>
+        <span class="s1">listaSimples.removerElemento(</span><span class="s4">&quot;Óleo&quot;</span><span class="s1">)</span><span class="s3">;</span>
+        <span class="s1">listaSimples.buscarElemento(</span><span class="s4">&quot;Óleo&quot;</span><span class="s1">)</span><span class="s3">;</span>
+        <span class="s1">listaSimples.exibirElementos()</span><span class="s3">;</span>
+
+        <span class="s5">// Testando removerTodas</span>
+        <span class="s0">int </span><span class="s1">removidos = listaSimples.removerTodas(</span><span class="s4">&quot;Arroz&quot;</span><span class="s1">)</span><span class="s3">;</span>
+        <span class="s1">System.out.println(</span><span class="s4">&quot;Total removido: &quot; </span><span class="s1">+ removidos)</span><span class="s3">;</span>
+
+        <span class="s1">listaSimples.exibirElementos()</span><span class="s3">;</span>
+
+        <span class="s1">System.out.println(</span><span class="s4">&quot;Total de elementos na lista: &quot; </span><span class="s1">+ listaSimples.contar())</span><span class="s3">;</span>
+
+        <span class="s1">String[] novos = {</span><span class="s4">&quot;Açúcar&quot;</span><span class="s3">, </span><span class="s4">&quot;Sal&quot;</span><span class="s3">, </span><span class="s4">&quot;Farinha&quot;</span><span class="s1">}</span><span class="s3">;</span>
+
+        <span class="s0">int </span><span class="s1">totalAdicionados = listaSimples.adicionarVarios(novos)</span><span class="s3">;</span>
+
+        <span class="s1">System.out.println(</span><span class="s4">&quot;Total adicionados: &quot; </span><span class="s1">+ totalAdicionados)</span><span class="s3">;</span>
+    <span class="s1">}</span>
+<span class="s1">}</span>
+</pre>
+</body>
+</html>

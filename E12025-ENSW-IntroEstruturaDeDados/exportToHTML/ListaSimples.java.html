@@ -1,0 +1,187 @@
+<html>
+<head>
+<title>ListaSimples.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #ed864a;}
+.s1 { color: #ebebeb;}
+.s2 { color: #ed864a; font-weight: bold;}
+.s3 { color: #54b33e;}
+.s4 { color: #33ccff; font-weight: bold;}
+.s5 { color: #499936; font-style: italic;}
+.s6 { color: #7ec3e6;}
+</style>
+</head>
+<body bgcolor="#131314">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+ListaSimples.java</font>
+</center></td></tr></table>
+<pre><span class="s0">public class </span><span class="s1">ListaSimples </span><span class="s0">implements </span><span class="s1">ListaOperacoes {</span>
+    <span class="s1">String [] lista</span><span class="s2">;</span>
+    <span class="s0">public </span><span class="s1">ListaSimples(</span><span class="s0">int </span><span class="s1">tamanho) {</span>
+        <span class="s0">this</span><span class="s1">.lista = </span><span class="s0">new </span><span class="s1">String[tamanho]</span><span class="s2">;</span>
+        <span class="s1">System.out.println(</span><span class="s3">&quot;Lista criada com sucesso! Existem &quot; </span><span class="s1">+ tamanho + </span><span class="s3">&quot; posições disponíveis.&quot;</span><span class="s1">)</span><span class="s2">;</span>
+    <span class="s1">}</span>
+
+    <span class="s0">public void </span><span class="s1">adicionarElemento(String elemento) {</span>
+        <span class="s0">if</span><span class="s1">(!</span><span class="s0">this</span><span class="s1">.estaCheia()) {</span>
+            <span class="s0">this</span><span class="s1">.lista[encontrarPosicao()] = elemento</span><span class="s2">;</span>
+            <span class="s1">System.out.println(</span><span class="s3">&quot;Elemento &quot; </span><span class="s1">+ elemento + </span><span class="s3">&quot;  adicionado com sucesso!&quot;</span><span class="s1">)</span><span class="s2">;</span>
+        <span class="s1">}</span>
+    <span class="s1">}</span>
+
+    <span class="s0">public boolean </span><span class="s1">estaCheia() {</span>
+        <span class="s0">for </span><span class="s1">(</span><span class="s0">int </span><span class="s1">i = </span><span class="s4">0</span><span class="s2">; </span><span class="s1">i &lt; </span><span class="s0">this</span><span class="s1">.lista.length</span><span class="s2">; </span><span class="s1">i++) {</span>
+            <span class="s0">if</span><span class="s1">(</span><span class="s0">this</span><span class="s1">.lista[i] == </span><span class="s0">null</span><span class="s1">) {</span>
+                <span class="s0">return false</span><span class="s2">;</span>
+            <span class="s1">}</span>
+        <span class="s1">}</span>
+        <span class="s1">System.out.println(</span><span class="s3">&quot;Não há espaço disponível na lista.&quot;</span><span class="s1">)</span><span class="s2">;</span>
+        <span class="s0">return true</span><span class="s2">;</span>
+    <span class="s1">}</span>
+
+    <span class="s0">public boolean </span><span class="s1">estaVazia() {</span>
+        <span class="s0">for </span><span class="s1">(</span><span class="s0">int </span><span class="s1">i = </span><span class="s4">0</span><span class="s2">; </span><span class="s1">i &lt; </span><span class="s0">this</span><span class="s1">.lista.length</span><span class="s2">; </span><span class="s1">i++) {</span>
+            <span class="s0">if</span><span class="s1">(</span><span class="s0">this</span><span class="s1">.lista[i] != </span><span class="s0">null</span><span class="s1">) {</span>
+                <span class="s0">return false</span><span class="s2">;</span>
+            <span class="s1">}</span>
+        <span class="s1">}</span>
+        <span class="s0">return true</span><span class="s2">;</span>
+    <span class="s1">}</span>
+
+    <span class="s0">private int </span><span class="s1">encontrarPosicao() {</span>
+        <span class="s0">int </span><span class="s1">i</span><span class="s2">;</span>
+        <span class="s0">for </span><span class="s1">(i = </span><span class="s4">0</span><span class="s2">; </span><span class="s1">i &lt; </span><span class="s0">this</span><span class="s1">.lista.length</span><span class="s2">; </span><span class="s1">i++) {</span>
+            <span class="s0">if</span><span class="s1">(</span><span class="s0">this</span><span class="s1">.lista[i] == </span><span class="s0">null</span><span class="s1">) {</span>
+               <span class="s0">break</span><span class="s2">;</span>
+            <span class="s1">}</span>
+        <span class="s1">}</span>
+        <span class="s0">return </span><span class="s1">i</span><span class="s2">;</span>
+    <span class="s1">}</span>
+
+    <span class="s0">public void </span><span class="s1">exibirElementos() {</span>
+        <span class="s0">for </span><span class="s1">(</span><span class="s0">int </span><span class="s1">i = </span><span class="s4">0</span><span class="s2">; </span><span class="s1">i &lt; </span><span class="s0">this</span><span class="s1">.lista.length</span><span class="s2">; </span><span class="s1">i++) {</span>
+            <span class="s1">System.out.println(</span><span class="s3">&quot;Lista[&quot; </span><span class="s1">+ i + </span><span class="s3">&quot;] = &quot; </span><span class="s1">+ </span><span class="s0">this</span><span class="s1">.lista[i])</span><span class="s2">;</span>
+        <span class="s1">}</span>
+    <span class="s1">}</span>
+
+    <span class="s0">public void </span><span class="s1">removerElemento(String elemento) {</span>
+        <span class="s0">boolean </span><span class="s1">removido = </span><span class="s0">false</span><span class="s2">;</span>
+        <span class="s0">if</span><span class="s1">(!estaVazia()) {</span>
+            <span class="s0">for </span><span class="s1">(</span><span class="s0">int </span><span class="s1">i = </span><span class="s4">0</span><span class="s2">; </span><span class="s1">i &lt; </span><span class="s0">this</span><span class="s1">.lista.length</span><span class="s2">; </span><span class="s1">i++) {</span>
+                <span class="s0">if</span><span class="s1">(</span><span class="s0">this</span><span class="s1">.lista[i] != </span><span class="s0">null </span><span class="s1">&amp;&amp; </span><span class="s0">this</span><span class="s1">.lista[i].equals(elemento)) {</span>
+                    <span class="s0">this</span><span class="s1">.lista[i] = </span><span class="s0">null</span><span class="s2">;</span>
+                    <span class="s1">removido = </span><span class="s0">true</span><span class="s2">;</span>
+                <span class="s1">}</span>
+            <span class="s1">}</span>
+        <span class="s1">}</span>
+        <span class="s0">if</span><span class="s1">(removido) {</span>
+            <span class="s1">System.out.println(</span><span class="s3">&quot;O elemento &quot; </span><span class="s1">+ elemento + </span><span class="s3">&quot; foi removido com sucesso!&quot;</span><span class="s1">)</span><span class="s2">;</span>
+        <span class="s1">} </span><span class="s0">else </span><span class="s1">{</span>
+            <span class="s1">System.out.println(</span><span class="s3">&quot;O elemento &quot; </span><span class="s1">+ elemento + </span><span class="s3">&quot; não existe na lista.&quot;</span><span class="s1">)</span><span class="s2">;</span>
+        <span class="s1">}</span>
+    <span class="s1">}</span>
+
+    <span class="s0">public void </span><span class="s1">buscarElemento(String elemento) {</span>
+        <span class="s0">boolean </span><span class="s1">encontrado = </span><span class="s0">false</span><span class="s2">;</span>
+        <span class="s0">if</span><span class="s1">(!estaVazia()) {</span>
+            <span class="s0">for </span><span class="s1">(</span><span class="s0">int </span><span class="s1">i = </span><span class="s4">0</span><span class="s2">; </span><span class="s1">i &lt; </span><span class="s0">this</span><span class="s1">.lista.length</span><span class="s2">; </span><span class="s1">i++) {</span>
+                <span class="s0">if</span><span class="s1">(</span><span class="s0">this</span><span class="s1">.lista[i] != </span><span class="s0">null </span><span class="s1">&amp;&amp; </span><span class="s0">this</span><span class="s1">.lista[i].equals(elemento)) {</span>
+                    <span class="s1">encontrado = </span><span class="s0">true</span><span class="s2">;</span>
+                <span class="s1">}</span>
+            <span class="s1">}</span>
+        <span class="s1">}</span>
+        <span class="s0">if</span><span class="s1">(encontrado) {</span>
+            <span class="s1">System.out.println(</span><span class="s3">&quot;O elemento &quot; </span><span class="s1">+ elemento + </span><span class="s3">&quot; existe na lista!&quot;</span><span class="s1">)</span><span class="s2">;</span>
+        <span class="s1">} </span><span class="s0">else </span><span class="s1">{</span>
+            <span class="s1">System.out.println(</span><span class="s3">&quot;O elemento &quot; </span><span class="s1">+ elemento + </span><span class="s3">&quot; não existe na lista.&quot;</span><span class="s1">)</span><span class="s2">;</span>
+        <span class="s1">}</span>
+    <span class="s1">}</span>
+    <span class="s5">/**</span>
+     <span class="s5">* Percorre todo o vetor e remove TODAS as ocorrências</span>
+     <span class="s5">* do elemento informado.</span>
+     <span class="s5">* Cada vez que encontra, coloca null na posição.</span>
+     <span class="s5">* Retorna quantos foram removidos.</span>
+     <span class="s5">*/</span>
+    <span class="s1">@Override</span>
+    <span class="s0">public int </span><span class="s1">removerTodas(String elemento) {</span>
+
+        <span class="s0">int </span><span class="s1">totalRemovidos = </span><span class="s4">0</span><span class="s2">; </span><span class="s6">// contador de remoções</span>
+
+        <span class="s6">// Se a lista estiver vazia, não há o que remover</span>
+        <span class="s0">if </span><span class="s1">(estaVazia()) {</span>
+            <span class="s1">System.out.println(</span><span class="s3">&quot;Lista está vazia.&quot;</span><span class="s1">)</span><span class="s2">;</span>
+            <span class="s0">return </span><span class="s4">0</span><span class="s2">;</span>
+        <span class="s1">}</span>
+
+        <span class="s6">// Percorre todas as posições do vetor</span>
+        <span class="s0">for </span><span class="s1">(</span><span class="s0">int </span><span class="s1">i = </span><span class="s4">0</span><span class="s2">; </span><span class="s1">i &lt; </span><span class="s0">this</span><span class="s1">.lista.length</span><span class="s2">; </span><span class="s1">i++) {</span>
+
+            <span class="s6">// Verifica se a posição contém o elemento</span>
+            <span class="s0">if </span><span class="s1">(</span><span class="s0">this</span><span class="s1">.lista[i] != </span><span class="s0">null </span><span class="s1">&amp;&amp; </span><span class="s0">this</span><span class="s1">.lista[i].equals(elemento)) {</span>
+
+                <span class="s6">// Remove colocando null</span>
+                <span class="s0">this</span><span class="s1">.lista[i] = </span><span class="s0">null</span><span class="s2">;</span>
+
+                <span class="s1">totalRemovidos++</span><span class="s2">; </span><span class="s6">// incrementa contador</span>
+            <span class="s1">}</span>
+        <span class="s1">}</span>
+
+        <span class="s0">return </span><span class="s1">totalRemovidos</span><span class="s2">; </span><span class="s6">// retorna quantos foram removidos</span>
+    <span class="s1">}</span>
+    <span class="s1">@Override</span>
+    <span class="s0">public int </span><span class="s1">contar() {</span>
+
+        <span class="s6">// variável que irá guardar a quantidade encontrada</span>
+        <span class="s0">int </span><span class="s1">total = </span><span class="s4">0</span><span class="s2">;</span>
+
+        <span class="s6">// percorre todo o vetor da lista</span>
+        <span class="s0">for </span><span class="s1">(</span><span class="s0">int </span><span class="s1">i = </span><span class="s4">0</span><span class="s2">; </span><span class="s1">i &lt; </span><span class="s0">this</span><span class="s1">.lista.length</span><span class="s2">; </span><span class="s1">i++) {</span>
+
+            <span class="s6">// se a posição NÃO estiver vazia</span>
+            <span class="s0">if</span><span class="s1">(</span><span class="s0">this</span><span class="s1">.lista[i] != </span><span class="s0">null</span><span class="s1">) {</span>
+
+                <span class="s6">// aumentamos o contador</span>
+                <span class="s1">total++</span><span class="s2">;</span>
+            <span class="s1">}</span>
+        <span class="s1">}</span>
+
+        <span class="s6">// retorna a quantidade total de elementos encontrados</span>
+        <span class="s0">return </span><span class="s1">total</span><span class="s2">;</span>
+    <span class="s1">}</span>
+    <span class="s1">@Override</span>
+    <span class="s0">public int </span><span class="s1">adicionarVarios(String[] elementos) {</span>
+
+        <span class="s6">// contador que irá registrar quantos elementos foram adicionados</span>
+        <span class="s0">int </span><span class="s1">adicionados = </span><span class="s4">0</span><span class="s2">;</span>
+
+        <span class="s6">// percorremos o vetor recebido como parâmetro</span>
+        <span class="s0">for</span><span class="s1">(</span><span class="s0">int </span><span class="s1">i = </span><span class="s4">0</span><span class="s2">; </span><span class="s1">i &lt; elementos.length</span><span class="s2">; </span><span class="s1">i++) {</span>
+
+            <span class="s6">// verificamos se ainda existe espaço na lista</span>
+            <span class="s0">if</span><span class="s1">(!estaCheia()) {</span>
+
+                <span class="s6">// usamos o método que já existe para adicionar um elemento</span>
+                <span class="s0">this</span><span class="s1">.lista[encontrarPosicao()] = elementos[i]</span><span class="s2">;</span>
+
+                <span class="s1">System.out.println(</span><span class="s3">&quot;Elemento &quot; </span><span class="s1">+ elementos[i] + </span><span class="s3">&quot; adicionado.&quot;</span><span class="s1">)</span><span class="s2">;</span>
+
+                <span class="s6">// aumentamos o contador</span>
+                <span class="s1">adicionados++</span><span class="s2">;</span>
+            <span class="s1">}</span>
+            <span class="s0">else </span><span class="s1">{</span>
+                <span class="s6">// se a lista estiver cheia, interrompemos o processo</span>
+                <span class="s1">System.out.println(</span><span class="s3">&quot;Lista cheia. Não foi possível adicionar: &quot; </span><span class="s1">+ elementos[i])</span><span class="s2">;</span>
+                <span class="s0">break</span><span class="s2">;</span>
+            <span class="s1">}</span>
+        <span class="s1">}</span>
+
+        <span class="s6">// retornamos quantos foram realmente adicionados</span>
+        <span class="s0">return </span><span class="s1">adicionados</span><span class="s2">;</span>
+    <span class="s1">}</span>
+<span class="s1">}</span>
+</pre>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<html>
+<head>
+<title>FilaDinamica.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #ed864a;}
+.s1 { color: #ebebeb;}
+.s2 { color: #ed864a; font-weight: bold;}
+.s3 { color: #54b33e;}
+</style>
+</head>
+<body bgcolor="#131314">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+FilaDinamica.java</font>
+</center></td></tr></table>
+<pre><span class="s0">public class </span><span class="s1">FilaDinamica {</span>
+    <span class="s1">No inicio</span><span class="s2">;</span>
+
+    <span class="s0">public </span><span class="s1">FilaDinamica() {</span>
+        <span class="s1">System.out.println(</span><span class="s3">&quot;Fila dinâmica criada com sucesso!&quot;</span><span class="s1">)</span><span class="s2">;</span>
+        <span class="s0">this</span><span class="s1">.inicio = </span><span class="s0">new </span><span class="s1">No(</span><span class="s0">null</span><span class="s1">)</span><span class="s2">;</span>
+    <span class="s1">}</span>
+
+    <span class="s0">public void </span><span class="s1">enfileirar(String elemento) {</span>
+        <span class="s0">if</span><span class="s1">(estaVazio()) {</span>
+            <span class="s0">this</span><span class="s1">.inicio.setConteudo(elemento)</span><span class="s2">;</span>
+            <span class="s1">System.out.println(</span><span class="s3">&quot;Elemento &quot; </span><span class="s1">+ elemento + </span><span class="s3">&quot; adicionado na Fila!&quot;</span><span class="s1">)</span><span class="s2">;</span>
+        <span class="s1">} </span><span class="s0">else </span><span class="s1">{</span>
+            <span class="s1">No novoNo = </span><span class="s0">new </span><span class="s1">No(elemento)</span><span class="s2">;</span>
+            <span class="s1">No aux = </span><span class="s0">this</span><span class="s1">.inicio</span><span class="s2">;</span>
+            <span class="s0">while</span><span class="s1">(aux != </span><span class="s0">null</span><span class="s1">) {</span>
+                <span class="s0">if</span><span class="s1">(aux.getProx() == </span><span class="s0">null</span><span class="s1">) {</span>
+                    <span class="s1">aux.setProx(novoNo)</span><span class="s2">;</span>
+                    <span class="s1">System.out.println(</span><span class="s3">&quot;Elemento &quot; </span><span class="s1">+ elemento + </span><span class="s3">&quot; adicionado na Fila!&quot;</span><span class="s1">)</span><span class="s2">;</span>
+                    <span class="s0">return</span><span class="s2">;</span>
+                <span class="s1">}</span>
+                <span class="s1">aux = aux.getProx()</span><span class="s2">;</span>
+            <span class="s1">}</span>
+        <span class="s1">}</span>
+
+    <span class="s1">}</span>
+
+    <span class="s0">private boolean </span><span class="s1">estaVazio() {</span>
+        <span class="s0">if </span><span class="s1">(</span><span class="s0">this</span><span class="s1">.inicio.getConteudo() == </span><span class="s0">null</span><span class="s1">) {</span>
+            <span class="s1">System.out.println(</span><span class="s3">&quot;A Fila está vazia!&quot;</span><span class="s1">)</span><span class="s2">;</span>
+            <span class="s0">return true</span><span class="s2">;</span>
+        <span class="s1">} </span><span class="s0">else </span><span class="s1">{</span>
+            <span class="s0">return false</span><span class="s2">;</span>
+        <span class="s1">}</span>
+    <span class="s1">}</span>
+
+    <span class="s0">public void </span><span class="s1">exibir() {</span>
+        <span class="s0">if</span><span class="s1">(!estaVazio()) {</span>
+            <span class="s1">No aux = </span><span class="s0">this</span><span class="s1">.inicio</span><span class="s2">;</span>
+            <span class="s0">while</span><span class="s1">(aux != </span><span class="s0">null</span><span class="s1">) {</span>
+                <span class="s1">System.out.println(aux.getConteudo())</span><span class="s2">;</span>
+                <span class="s1">aux = aux.getProx()</span><span class="s2">;</span>
+            <span class="s1">}</span>
+        <span class="s1">}</span>
+    <span class="s1">}</span>
+
+    <span class="s0">public void </span><span class="s1">desenfileirar() {</span>
+        <span class="s0">if</span><span class="s1">(!estaVazio()) {</span>
+            <span class="s0">if</span><span class="s1">(</span><span class="s0">this</span><span class="s1">.inicio.getProx() == </span><span class="s0">null</span><span class="s1">) {</span>
+                <span class="s1">System.out.println(</span><span class="s3">&quot;Elemento &quot; </span><span class="s1">+ </span><span class="s0">this</span><span class="s1">.inicio.getConteudo() + </span><span class="s3">&quot; removido da fila.&quot;</span><span class="s1">)</span><span class="s2">;</span>
+                <span class="s0">this</span><span class="s1">.inicio.setConteudo(</span><span class="s0">null</span><span class="s1">)</span><span class="s2">;</span>
+                <span class="s0">return</span><span class="s2">;</span>
+            <span class="s1">} </span><span class="s0">else </span><span class="s1">{</span>
+                <span class="s1">System.out.println(</span><span class="s3">&quot;Elemento &quot; </span><span class="s1">+ </span><span class="s0">this</span><span class="s1">.inicio.getConteudo() + </span><span class="s3">&quot; removido da fila.&quot;</span><span class="s1">)</span><span class="s2">;</span>
+                <span class="s0">this</span><span class="s1">.inicio = </span><span class="s0">this</span><span class="s1">.inicio.getProx()</span><span class="s2">;</span>
+            <span class="s1">}</span>
+        <span class="s1">}</span>
+    <span class="s1">}</span>
+<span class="s1">}</span>
+</pre>
+</body>
+</html>
