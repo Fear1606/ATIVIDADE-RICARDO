@@ -177,17 +177,17 @@ public class ListaSimples implements ListaOperacoes {
         return this.lista[indice];
     }
     @Override
-    public boolean inserir(int indice, String elemento) {
+    public void inserir(int indice, String elemento) {
 
         // verifica se índice é inválido
         if(indice < 0 || indice >= lista.length) {
             System.out.println("Índice inválido.");
-            return false;
+            return;
         }
 
         // verifica se a lista está cheia
         if(estaCheia()) {
-            return false;
+            return;
         }
 
         // desloca os elementos para a direita
@@ -200,7 +200,38 @@ public class ListaSimples implements ListaOperacoes {
 
         System.out.println("Elemento " + elemento + " inserido na posição " + indice);
 
-        return true;
     }
 
+    @Override
+    public void removerPorIndice(int indice) {
+
+        // verifica se índice é inválido
+        if(indice < 0 || indice >= lista.length || lista[indice] == null) {
+            System.out.println("Índice inválido.");
+            return;
+        }
+
+        // guardamos o elemento que será removido
+        String removido = lista[indice];
+
+        // desloca os elementos para a esquerda
+        for(int i = indice; i < lista.length - 1; i++) {
+            lista[i] = lista[i + 1];
+        }
+
+        // última posição fica vazia
+        lista[lista.length - 1] = null;
+
+        System.out.println("Elemento " + removido + " removido da posição " + indice);
+
+    }
+    @Override
+    public void limpar() {
+
+        for(int i = 0; i < lista.length; i++) {
+            lista[i] = null;
+        }
+
+        System.out.println("Lista limpa com sucesso!");
+    }
 }

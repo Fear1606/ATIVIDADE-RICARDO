@@ -44,6 +44,14 @@ public class MainListaDinamica {
         listaDinamica.inserir(1, "Bife");
 
         listaDinamica.exibir();
+
+        //QUESTÃO 6
+        listaDinamica.removerPorIndice(1);
+
+        listaDinamica.exibir();
+
+        listaDinamica.limpar();
+        listaDinamica.exibir();
     }
-    
+
 }

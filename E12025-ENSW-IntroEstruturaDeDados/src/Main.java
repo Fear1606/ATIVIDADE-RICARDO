@@ -20,14 +20,24 @@ public class Main {
 
         System.out.println("Total de elementos na lista: " + listaSimples.contar());
 
+        //QUESTÃO 4
         String[] novos = {"Açúcar", "Sal", "Farinha"};
 
         int totalAdicionados = listaSimples.adicionarVarios(novos);
 
         System.out.println("Total adicionados: " + totalAdicionados);
 
-        //QUESTÃO 4
+        //QUESTÃO 5
         System.out.println("Elemento na posição 2: " + listaSimples.obter(2));
+
+        //QUESTÃO 6
+        listaSimples.removerPorIndice(2);
+
+        listaSimples.exibirElementos();
+
+        listaSimples.limpar();
+
+        listaSimples.exibirElementos();
     }
 }
 
