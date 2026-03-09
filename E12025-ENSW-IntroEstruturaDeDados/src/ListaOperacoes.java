@@ -8,10 +8,15 @@ public interface ListaOperacoes {
 
     String obter(int indice);
 
-    void inserir(int indice, String elemento);
+    boolean inserir(int indice, String elemento);
 
     void limpar();
 
-    void removerPorIndice(int indice);
+    String removerPorIndice(int indice);
 
+    int ultimoIndiceDe(String elemento);
+
+    int contarOcorrencias(String elemento);
+
+    int substituir(String antigo, String novo);
 }

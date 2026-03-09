@@ -1,13 +1,16 @@
 public class ListaSimples implements ListaOperacoes {
     String [] lista;
+    int tamanho;
     public ListaSimples(int tamanho) {
         this.lista = new String[tamanho];
+        this.tamanho = 0;
         System.out.println("Lista criada com sucesso! Existem " + tamanho + " posições disponíveis.");
     }
 
     public void adicionarElemento(String elemento) {
         if(!this.estaCheia()) {
             this.lista[encontrarPosicao()] = elemento;
+            tamanho++;
             System.out.println("Elemento " + elemento + "  adicionado com sucesso!");
         }
     }
@@ -35,33 +38,32 @@ public class ListaSimples implements ListaOperacoes {
         int i;
         for (i = 0; i < this.lista.length; i++) {
             if(this.lista[i] == null) {
-               break;
+                break;
             }
         }
         return i;
     }
 
     public void exibirElementos() {
-        for (int i = 0; i < this.lista.length; i++) {
+        for (int i = 0; i < tamanho; i++) {
             System.out.println("Lista[" + i + "] = " + this.lista[i]);
         }
     }
 
     public void removerElemento(String elemento) {
-        boolean removido = false;
-        if(!estaVazia()) {
-            for (int i = 0; i < this.lista.length; i++) {
-                if(this.lista[i] != null && this.lista[i].equals(elemento)) {
-                    this.lista[i] = null;
-                    removido = true;
+        for (int i = 0; i < tamanho; i++) {
+            if (lista[i] != null && lista[i].equals(elemento)) {
+                // Move para esquerda os elementos.
+                for (int j = i; j < tamanho - 1; j++) {
+                    lista[j] = lista[j + 1];
                 }
+                lista[tamanho - 1] = null;
+                tamanho--;
+                System.out.println("Elemento removido");
+                return;
             }
         }
-        if(removido) {
-            System.out.println("O elemento " + elemento + " foi removido com sucesso!");
-        } else {
-            System.out.println("O elemento " + elemento + " não existe na lista.");
-        }
+        System.out.println("Elemento não encontrado");
     }
 
     public void buscarElemento(String elemento) {
@@ -87,78 +89,37 @@ public class ListaSimples implements ListaOperacoes {
      */
     @Override
     public int removerTodas(String elemento) {
-
-        int totalRemovidos = 0; // contador de remoções
-
-        // Se a lista estiver vazia, não há o que remover
-        if (estaVazia()) {
-            System.out.println("Lista está vazia.");
-            return 0;
-        }
-
-        // Percorre todas as posições do vetor
-        for (int i = 0; i < this.lista.length; i++) {
-
-            // Verifica se a posição contém o elemento
-            if (this.lista[i] != null && this.lista[i].equals(elemento)) {
-
-                // Remove colocando null
-                this.lista[i] = null;
-
-                totalRemovidos++; // incrementa contador
+        int removidos = 0;
+        int i = 0;
+        while (i < tamanho) {
+            if (lista[i] != null && lista[i].equals(elemento)) {
+                // Desloca
+                for (int j = i; j < tamanho - 1; j++) {
+                    lista[j] = lista[j + 1];
+                }
+                lista[tamanho - 1] = null;
+                tamanho--;
+                removidos++;
+            } else {
+                i++;
             }
         }
-
-        return totalRemovidos; // retorna quantos foram removidos
+        return removidos;
     }
+
     @Override
     public int contar() {
-
-        // variável que irá guardar a quantidade encontrada
-        int total = 0;
-
-        // percorre todo o vetor da lista
-        for (int i = 0; i < this.lista.length; i++) {
-
-            // se a posição NÃO estiver vazia
-            if(this.lista[i] != null) {
-
-                // aumentamos o contador
-                total++;
-            }
-        }
-
-        // retorna a quantidade total de elementos encontrados
-        return total;
+        //A variavel tamanho armazena a quantidades de itens na lista.
+        return tamanho;
     }
     @Override
     public int adicionarVarios(String[] elementos) {
-
-        // contador que irá registrar quantos elementos foram adicionados
         int adicionados = 0;
-
-        // percorremos o vetor recebido como parâmetro
-        for(int i = 0; i < elementos.length; i++) {
-
-            // verificamos se ainda existe espaço na lista
-            if(!estaCheia()) {
-
-                // usamos o método que já existe para adicionar um elemento
-                this.lista[encontrarPosicao()] = elementos[i];
-
-                System.out.println("Elemento " + elementos[i] + " adicionado.");
-
-                // aumentamos o contador
-                adicionados++;
-            }
-            else {
-                // se a lista estiver cheia, interrompemos o processo
-                System.out.println("Lista cheia. Não foi possível adicionar: " + elementos[i]);
-                break;
-            }
+        for (int i = 0; i < elementos.length && tamanho < lista.length; i++) {
+            lista[tamanho] = elementos[i];
+            tamanho++;
+            adicionados++;
         }
-
-        // retornamos quantos foram realmente adicionados
         return adicionados;
     }
     /**
@@ -168,7 +129,7 @@ public class ListaSimples implements ListaOperacoes {
     public String obter(int indice) {
 
         // verificamos se o índice é inválido
-        if(indice < 0 || indice >= this.lista.length) {
+        if(indice < 0 || indice >= tamanho) {
             System.out.println("Índice inválido.");
             return null;
         }
@@ -177,21 +138,21 @@ public class ListaSimples implements ListaOperacoes {
         return this.lista[indice];
     }
     @Override
-    public void inserir(int indice, String elemento) {
+    public boolean inserir(int indice, String elemento) {
 
         // verifica se índice é inválido
-        if(indice < 0 || indice >= lista.length) {
+        if(indice < 0 || indice > tamanho) {
             System.out.println("Índice inválido.");
-            return;
+            return false;
         }
 
         // verifica se a lista está cheia
         if(estaCheia()) {
-            return;
+            return false;
         }
 
         // desloca os elementos para a direita
-        for(int i = lista.length - 1; i > indice; i--) {
+        for(int i = tamanho - 1; i > indice; i--) {
             lista[i] = lista[i - 1];
         }
 
@@ -199,39 +160,101 @@ public class ListaSimples implements ListaOperacoes {
         lista[indice] = elemento;
 
         System.out.println("Elemento " + elemento + " inserido na posição " + indice);
-
+        tamanho++;
+        return true;
     }
 
+    /**
+     * Remove o elemento localizado em uma posição específica da lista.
+     *
+     * No vetor, os elementos à direita devem ser deslocados para
+     * preencher o espaço. Na lista encadeada, deve-se ajustar os
+     * ponteiros entre os nós.
+     *
+     * @param indice Posição do elemento a ser removido.
+     * @return Elemento removido ou null caso o índice seja inválido.
+     */
     @Override
-    public void removerPorIndice(int indice) {
-
-        // verifica se índice é inválido
-        if(indice < 0 || indice >= lista.length || lista[indice] == null) {
-            System.out.println("Índice inválido.");
-            return;
+    public String removerPorIndice(int indice) {
+        if(indice < 0 || indice>= tamanho){
+            return null;
         }
+        String elementoRemovido = lista[indice];
 
-        // guardamos o elemento que será removido
-        String removido = lista[indice];
-
-        // desloca os elementos para a esquerda
-        for(int i = indice; i < lista.length - 1; i++) {
-            lista[i] = lista[i + 1];
+        //Move os elementos para esquerda
+        for (int i = indice; i < tamanho -1; i++) {
+            lista[i] = lista[i+1];
         }
-
-        // última posição fica vazia
-        lista[lista.length - 1] = null;
-
-        System.out.println("Elemento " + removido + " removido da posição " + indice);
-
+        lista[tamanho -1] = null;
+        tamanho--;
+        return elementoRemovido;
     }
-    @Override
-    public void limpar() {
 
-        for(int i = 0; i < lista.length; i++) {
+    /**
+     * Remove todos os elementos da lista, deixando-a vazia.
+     *
+     * No caso da lista baseada em vetor, apenas o tamanho lógico
+     * deve ser resetado. Na lista dinâmica, os nós devem ser
+     * desconectados para permitir a coleta de lixo.
+     */
+    public void limpar(){
+        for (int i = 0; i < tamanho; i++) {
             lista[i] = null;
         }
+        tamanho = 0;
+    }
 
-        System.out.println("Lista limpa com sucesso!");
+    /**
+     * Retorna o índice da última ocorrência de um elemento na lista.
+     *
+     * @param elemento Elemento a ser buscado.
+     * @return Índice da última ocorrência ou -1 caso não exista.
+     */
+    public int ultimoIndiceDe(String elemento){
+        for (int i = tamanho - 1; i >= 0; i--) {  // Percorre do final para o começo
+            if (lista[i] != null && lista[i].equals(elemento)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * Conta quantas vezes um determinado elemento aparece na lista.
+     *
+     * @param elemento Elemento a ser contado.
+     * @return Número de ocorrências do elemento.
+     */
+    public int contarOcorrencias(String elemento){
+        int numOcorrencias = 0;
+        for (int i = 0; i < tamanho; i++) {
+            if (lista[i] != null && lista[i].equals(elemento)){
+                numOcorrencias++;
+            }
+        }
+        return numOcorrencias;
+    }
+
+    /**
+     * Substitui todas as ocorrências de um elemento antigo por um novo elemento.
+     *
+     * Exemplo:
+     * Lista: ["Ana", "Carlos", "Ana"]
+     * substituir("Ana", "Maria")
+     * Resultado: ["Maria", "Carlos", "Maria"]
+     *
+     * @param antigo Elemento que será substituído.
+     * @param novo Novo valor que substituirá o antigo.
+     * @return Quantidade total de substituições realizadas.
+     */
+    public int substituir(String antigo, String novo){
+        int numSubstituicoes = 0;
+        for (int i = 0; i < tamanho; i++) {
+            if (lista[i] != null && lista[i].equals(antigo)){
+                lista[i] = novo;
+                numSubstituicoes++;
+            }
+        }
+        return numSubstituicoes;
     }
 }
