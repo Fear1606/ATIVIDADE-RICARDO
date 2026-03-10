@@ -1,3 +1,4 @@
+
 public class ListaDinamica implements ListaOperacoes {
     No inicio;
 
@@ -257,12 +258,12 @@ public class ListaDinamica implements ListaOperacoes {
     }
 
     @Override
-    public void inserir(int indice, String elemento) {
+    public boolean inserir(int indice, String elemento) {
 
         // índice inválido
         if (indice < 0) {
             System.out.println("Índice inválido.");
-            return;
+            return false;
         }
 
         No novoNo = new No(elemento);
@@ -275,7 +276,7 @@ public class ListaDinamica implements ListaOperacoes {
 
             System.out.println("Elemento " + elemento + " inserido no início da lista.");
 
-            return;
+            return false;
         }
 
         No aux = inicio;
@@ -291,7 +292,7 @@ public class ListaDinamica implements ListaOperacoes {
         // se não encontrou posição válida
         if (aux == null) {
             System.out.println("Índice fora do tamanho da lista.");
-            return;
+            return false;
         }
 
         // ajustamos os ponteiros dos nós
@@ -300,15 +301,16 @@ public class ListaDinamica implements ListaOperacoes {
 
         System.out.println("Elemento " + elemento + " inserido na posição " + indice);
 
+        return false;
     }
 
     @Override
-    public void removerPorIndice(int indice) {
+    public String removerPorIndice(int indice) {
 
         // índice inválido
         if (indice < 0) {
             System.out.println("Índice inválido.");
-            return;
+            return null;
         }
 
         No aux = inicio;
@@ -321,7 +323,7 @@ public class ListaDinamica implements ListaOperacoes {
 
             System.out.println("Elemento " + removido + " removido da posição 0");
 
-            return;
+            return removido;
         }
 
         int contador = 0;
@@ -335,7 +337,7 @@ public class ListaDinamica implements ListaOperacoes {
         // se posição inválida
         if (aux == null || aux.getProx() == null) {
             System.out.println("Índice fora da lista.");
-            return;
+            return null;
         }
 
         // elemento que será removido
@@ -346,6 +348,7 @@ public class ListaDinamica implements ListaOperacoes {
 
         System.out.println("Elemento " + removido + " removido da posição " + indice);
 
+        return removido;
     }
 
     @Override
@@ -355,7 +358,89 @@ public class ListaDinamica implements ListaOperacoes {
 
         System.out.println("Lista dinâmica limpa com sucesso!");
 
+    }
 
+    /**
+     * Retorna o índice da última ocorrência de um elemento na lista.
+     *
+     * @param elemento Elemento a ser buscado.
+     * @return Índice da última ocorrência ou -1 caso não exista.
+     */
+    @Override
+    public int ultimoIndiceDe(String elemento) {
+        No aux = this.inicio;
+        //Variável Que Fornece o Índice.
+        int indice = -1;
+        //Armazena o Índice da Última Ocorrência.
+        int indiceUltiOco = -1;
+        //While Percorre a Lista e o IF Atualiza até a Última Ocorrência do Elemento.
+        while (aux != null){
+            indice++;
+            if(aux.getConteudo() != null && aux.getConteudo().equals(elemento)){
+                indiceUltiOco = indice;
+            }
+            //Atualiza o aux.
+            aux = aux.getProx();
+        }
+        //Retorna o Índice da Última Ocorrência ou (-1) Se não Existir.
+        return indiceUltiOco;
+    }
+
+    /**
+     * Conta quantas vezes um determinado elemento aparece na lista.
+     *
+     * @param elemento Elemento a ser contado.
+     * @return Número de ocorrências do elemento.
+     */
+    @Override
+    public int contarOcorrencias(String elemento){
+        No aux = this.inicio;
+        //Armazena o Número de Ocorrências.
+        int numOcorrencias = 0;
+
+        //Percorre a Lista
+        while (aux != null){
+            //Compara e Itera as Ocorrências.
+            if(aux.getConteudo() != null && aux.getConteudo().equals(elemento)){
+                numOcorrencias++;
+            }
+            //Atualiza o aux.
+            aux = aux.getProx();
+        }
+        //Retorna a Variável o total das Ocorrências.
+        return numOcorrencias;
+    }
+
+
+    /**
+     * Substitui todas as ocorrências de um elemento antigo por um novo elemento.
+     *
+     * Exemplo:
+     * Lista: ["Ana", "Carlos", "Ana"]
+     * substituir("Ana", "Maria")
+     * Resultado: ["Maria", "Carlos", "Maria"]
+     *
+     * @param antigo Elemento que será substituído.
+     * @param novo Novo valor que substituirá o antigo.
+     * @return Quantidade total de substituições realizadas.
+     */
+    @Override
+    public int substituir(String antigo, String novo) {
+        No aux = this.inicio;
+        //Armazena total de Substituições.
+        int substituicoes = 0;
+
+        //Percorre a Lista.
+        while (aux != null){
+            //Compara e Substitui a String Antiga Pela Nova.
+            if (aux.getConteudo() != null && aux.getConteudo().equals(antigo)){
+                aux.setConteudo(novo);
+                substituicoes++;
+            }
+            //Atualiza o aux.
+            aux = aux.getProx();
+        }
+        return substituicoes;
     }
 
 }

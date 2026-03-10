@@ -211,7 +211,7 @@ public class ListaSimples implements ListaOperacoes {
      * @return Índice da última ocorrência ou -1 caso não exista.
      */
     public int ultimoIndiceDe(String elemento){
-        for (int i = tamanho - 1; i >= 0; i--) {  // Percorre do final para o começo
+        for (int i = tamanho - 1; i >= 0; i--) {  // Percorre do final para o começo e Retorna o Primeiro que Encontrar.
             if (lista[i] != null && lista[i].equals(elemento)) {
                 return i;
             }
@@ -226,8 +226,11 @@ public class ListaSimples implements ListaOperacoes {
      * @return Número de ocorrências do elemento.
      */
     public int contarOcorrencias(String elemento){
+        //Armazena o Número de Ocorrências.
         int numOcorrencias = 0;
+        //Percorre a Lista
         for (int i = 0; i < tamanho; i++) {
+            //Itera o numOcorrencias Quando encontra o elemento passado no Método.
             if (lista[i] != null && lista[i].equals(elemento)){
                 numOcorrencias++;
             }
@@ -248,8 +251,11 @@ public class ListaSimples implements ListaOperacoes {
      * @return Quantidade total de substituições realizadas.
      */
     public int substituir(String antigo, String novo){
+        //Armazena o Número de Substituições.
         int numSubstituicoes = 0;
+        //Percorre a Lista.
         for (int i = 0; i < tamanho; i++) {
+            //Substitui a String Antiga Pela nova e itera a Variável numOcorrencias.
             if (lista[i] != null && lista[i].equals(antigo)){
                 lista[i] = novo;
                 numSubstituicoes++;
