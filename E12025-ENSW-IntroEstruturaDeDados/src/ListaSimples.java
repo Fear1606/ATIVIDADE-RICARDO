@@ -8,6 +8,9 @@ public class ListaSimples implements ListaOperacoes {
     }
 
     public void adicionarElemento(String elemento) {
+        if(!elementoValido(elemento)) {
+            return;
+        }
         if(!this.estaCheia()) {
             this.lista[encontrarPosicao()] = elemento;
             tamanho++;
@@ -127,7 +130,13 @@ public class ListaSimples implements ListaOperacoes {
      */
     @Override
     public String obter(int indice) {
-
+        if(indice >= tamanhoAtual()) {
+            System.out.println("Índice fora do tamanho da lista.");
+            return null;
+        }
+        if(!indiceValido(indice)) {
+            return null;
+        }
         // verificamos se o índice é inválido
         if(indice < 0 || indice >= tamanho) {
             System.out.println("Índice inválido.");
@@ -137,6 +146,28 @@ public class ListaSimples implements ListaOperacoes {
         // retornamos o elemento que está naquela posição
         return this.lista[indice];
     }
+
+    /**
+     * Calcula quantos elementos existem atualmente na lista.
+     * Esse método percorre o vetor e conta apenas posições que possuem valor.
+     */
+    private int tamanhoAtual() {
+
+        int total = 0; // variável que irá guardar a quantidade de elementos
+
+        // percorre todas as posições do vetor
+        for(int i = 0; i < lista.length; i++) {
+
+            // verifica se a posição não está vazia
+            if(lista[i] != null) {
+                total++; // soma 1 ao contador
+            }
+        }
+
+        // retorna a quantidade de elementos encontrados
+        return total;
+    }
+
     @Override
     public boolean inserir(int indice, String elemento) {
 
@@ -262,5 +293,38 @@ public class ListaSimples implements ListaOperacoes {
             }
         }
         return numSubstituicoes;
+    }
+    /**
+     * Verifica se o elemento é válido.
+     * Não permitimos elementos null ou vazios.
+     */
+    private boolean elementoValido(String elemento) {
+
+        // verifica se é null
+        if(elemento == null) {
+            System.out.println("Elemento não pode ser null.");
+            return false;
+        }
+
+        // remove espaços e verifica se ficou vazio
+        if(elemento.trim().isEmpty()) {
+            System.out.println("Elemento não pode ser vazio.");
+            return false;
+        }
+
+        return true;
+    }
+    /**
+     * Verifica se um índice é válido dentro da lista.
+     */
+    private boolean indiceValido(int indice) {
+
+        // índice não pode ser negativo
+        if(indice < 0) {
+            System.out.println("Índice não pode ser negativo.");
+            return false;
+        }
+
+        return true;
     }
 }

@@ -8,7 +8,9 @@ public class ListaDinamica implements ListaOperacoes {
     }
 
     public void adicionarElemento(String elemento) {
-
+        if(!elementoValido(elemento)) {
+            return;
+        }
         if (inicioEstaVazio()) {
             this.inicio.setConteudo(elemento);
         } else {
@@ -441,6 +443,26 @@ public class ListaDinamica implements ListaOperacoes {
             aux = aux.getProx();
         }
         return substituicoes;
+    }
+    /**
+     * Verifica se o elemento é válido.
+     * Não permitimos elementos null ou vazios.
+     */
+    private boolean elementoValido(String elemento) {
+
+        // verifica se é null
+        if(elemento == null) {
+            System.out.println("Elemento não pode ser null.");
+            return false;
+        }
+
+        // remove espaços e verifica se ficou vazio
+        if(elemento.trim().isEmpty()) {
+            System.out.println("Elemento não pode ser vazio.");
+            return false;
+        }
+
+        return true;
     }
 
 }
