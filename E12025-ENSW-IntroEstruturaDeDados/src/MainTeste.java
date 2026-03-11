@@ -7,7 +7,7 @@ public class MainTeste {
         lista.adicionarElemento("C");
 
         lista.exibir();
-        lista.ultimoIndiceDe("A");
+        System.out.println(lista.ultimoIndiceDe("A"));
 
         System.out.println(lista.contarOcorrencias("A"));
         lista.substituir("A","B");
